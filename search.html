@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+  body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+  .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+  .fa-anchor,.fa-coffee {font-size:200px}
+  </style>
+
+  <title>HawkerHelp Food</title> <!--remember to change this before the presentation-->
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+    body {
+        padding-top: 56px;
+      }
+    </style>
+    <!-- Bootstrap core JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <div class="w3-top">
+    <div class="w3-bar w3-red w3-card w3-left-align w3-large">
+      <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+      <a href="/" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Home</a>
+      <a href="/" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">About</a>
+      <a href="/" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">How It Works</a>
+      <a href="/shop" class="w3-bar-item w3-button w3-padding-large w3-white">Look for hawkers near you</a>
+      <a href="https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=110" target="_blank" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Add Your Own Stall</a>
+    </div>
+
+    <!-- Navbar on small screens -->
+    <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+      <a href="/" class="w3-bar-item w3-button w3-padding-large">Home</a>
+      <a href="/" class="w3-bar-item w3-button w3-padding-large">About</a>
+      <a href="/" class="w3-bar-item w3-button w3-padding-large">How It Works</a>
+      <a href="/shop" class="w3-bar-item w3-button w3-padding-large">Look for hawkers near you</a>
+    </div>
+  </div>
+
+  <!-- Page Content -->
+  <div class="container">
+    
+    <div class="row">
+    
+      <div class="col-lg-3">
+        <a href={{url_for("shop")}} style="text-decoration: none;color: black;"><h1 class="my-4">Look for hawkers!</h1></a>
+
+        <div class="input-group md-form form-sm form-2 pl-0">
+            <form action = '/search' class="form-inline active-cyan-4">
+                <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search" aria-label="Search" name = "search">
+                <div class="input-group-append">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </div>
+            </form>
+              </div>
+            <br>
+        
+        <div class="list-group">
+          <a href="#" class="list-group-item">Hot Deals!</a>
+          <a href="#" class="list-group-item">Elderly Hawkers Who Need Our Help!</a>
+          <a href={{url_for("chinese")}} class="list-group-item">Chinese</a>
+          <a href={{url_for("malay")}} class="list-group-item">Malay</a>
+          <a href={{url_for("indian")}} class="list-group-item">Indian</a>
+          <a href={{url_for("western")}} class="list-group-item">Western</a>
+          <a href={{url_for("others")}} class="list-group-item">Others</a>
+        </div>
+
+      </div>
+      <!-- /.col-lg-3 -->
+      <div class="col-lg-9">
+      
+        <div class="row">
+            {% for result in results %}
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+              <a href="#"><img class="card-img-top" src={{result[1]}} alt=""></a>
+              <div class="card-body">
+                <h4 class="card-title">
+                    <a href = ''>{{result[0]}}</a>
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+                </h4>
+                <h5>{{result[3]}}</h5>
+                <p class="card-text">{{result[4]}}.<br>
+                  Contact to order @ {{result[2]}}</p>
+                  <p style="color:red" class="card-text"><i>{{result[3]}}</i></p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        <!-- /.row -->
+        
+      </div>
+      <!-- /.col-lg-9 -->
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">HawkerHelp 2020</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+    
+</html>
